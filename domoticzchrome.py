@@ -34,7 +34,6 @@ class mediaListener:
         return data
 
     def storeVariable(self,name, value):
-        print("storeVariable")
         value = urllib.urlencode({'vvalue':value, 'vname':name, 'vtype':2})
         data = self.requestJson("updateuservariable&"+value)
         reader = codecs.getreader("utf-8")
@@ -53,7 +52,6 @@ class mediaListener:
                 requesturl += "On"
             else :
                 requesturl += "Off"
-            print(requesturl)
             data = self.requestJson(requesturl)
             self.storeVariable('ChromeState', status.player_state)
 
@@ -62,5 +60,5 @@ listener = mediaListener(domoticz, 106)
 cast.media_controller.register_status_listener(listener)
 
 while (1):
-#    time.sleep(1)
+    time.sleep(1)
     pass
