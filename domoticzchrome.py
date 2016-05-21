@@ -28,6 +28,8 @@ class mediaListener:
         self.oldPlayerStatus = 'NONE'
 
     def requestJson(url):
+        print("requestJson")
+        print(url)
         print(self.domurl+"/json.htm?type=command&param="+url)
         data = urllib.urlopen(self.domurl+"/json.htm?type=command&param="+url)
         print(data)
