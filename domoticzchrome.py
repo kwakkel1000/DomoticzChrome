@@ -46,7 +46,6 @@ class mediaListener:
                 requesturl += "off"
             print(requesturl)
             data = self.requestJson(requesturl)
-            print(data)
             self.storeVariable('ChromeState', new_state)
 
     def storeVariable(self,name, value):
@@ -63,5 +62,5 @@ listener = mediaListener(domoticz, 106)
 cast.media_controller.register_status_listener(listener)
 
 while (1):
-    time.sleep(1)
+#    time.sleep(1)
     pass
