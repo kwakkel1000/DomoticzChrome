@@ -55,7 +55,7 @@ class mediaListener:
                 requesturl += "Off"
             print(requesturl)
             data = self.requestJson(requesturl)
-            self.storeVariable('ChromeState', new_state)
+            self.storeVariable('ChromeState', status.player_state)
 
 listener = mediaListener(domoticz, 106)
 
