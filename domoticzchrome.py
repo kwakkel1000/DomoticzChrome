@@ -29,28 +29,20 @@ class mediaListener:
 
     def requestJson(self, requesturl):
         print("requestJson")
-        print(requesturl)
         print(self.domurl+"/json.htm?type=command&param="+requesturl)
         data = urllib.urlopen(self.domurl+"/json.htm?type=command&param="+requesturl)
-        print(data)
         return data
 
     def new_media_status(self, status):
         print("mediaListener")
         print(status)
-        print(self.oldPlayerStatus)
-        print(status.player_state)
         if (self.oldPlayerStatus != status.player_state):
             print("new state")
-            print(self.device)
             self.oldPlayerStatus = status.player_state
             requesturl = "switchlight&idx="+str(self.device)+"&switchcmd="
-            print(requesturl)
             if status.player_state == "PLAYING" or status.player_state == "BUFFERING":
-                print("on: "+status.player_state)
                 requesturl += "on"
             else :
-                print("off: "+status.player_state)
                 requesturl += "off"
             print(requesturl)
             data = self.requestJson(requesturl)
@@ -58,6 +50,7 @@ class mediaListener:
             self.storeVariable('ChromeState', new_state)
 
     def storeVariable(self,name, value):
+        print("storeVariable")
         value = urllib.urlencode({'vvalue':value, 'vname':name, 'vtype':2})
         data = self.requestJson("updateuservariable&"+value)
         reader = codecs.getreader("utf-8")
