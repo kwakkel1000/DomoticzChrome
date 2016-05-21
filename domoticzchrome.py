@@ -27,11 +27,11 @@ class mediaListener:
         self.device=deviceno
         self.oldPlayerStatus = 'NONE'
 
-    def requestJson(url):
+    def requestJson(requesturl):
         print("requestJson")
-        print(url)
-        print(self.domurl+"/json.htm?type=command&param="+url)
-        data = urllib.urlopen(self.domurl+"/json.htm?type=command&param="+url)
+        print(requesturl)
+        print(self.domurl+"/json.htm?type=command&param="+requesturl)
+        data = urllib.urlopen(self.domurl+"/json.htm?type=command&param="+requesturl)
         print(data)
         return data
 
@@ -44,15 +44,15 @@ class mediaListener:
             print("new state")
             print(self.device)
             self.oldPlayerStatus = status.player_state
-            url = "switchlight&idx="+self.device+"&switchcmd="
-            print(url)
+            requesturl = "switchlight&idx="+self.device+"&switchcmd="
+            print(requesturl)
             if status.player_state == "PLAYING" or status.player_state == "BUFFERING":
                 print("on: "+status.player_state)
-                url += "on"
+                requesturl += "on"
             else :
                 print("off: "+status.player_state)
-                url += "off"
-            data = self.requestJson(url)
+                requesturl += "off"
+            data = self.requestJson(requesturl)
             print(data)
             self.storeVariable('ChromeState', new_state)
 
