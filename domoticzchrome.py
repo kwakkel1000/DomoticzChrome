@@ -41,6 +41,8 @@ class mediaListener:
         print(self.oldPlayerStatus)
         print(status.player_state)
         if (self.oldPlayerStatus != status.player_state):
+            print("new state")
+            print(self.device)
             self.oldPlayerStatus = status.player_state
             url = "switchlight&idx="+self.device+"&switchcmd="
             print(url)
