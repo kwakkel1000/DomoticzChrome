@@ -27,7 +27,7 @@ class mediaListener:
         self.device=deviceno
         self.oldPlayerStatus = 'NONE'
 
-    def requestJson(requesturl):
+    def requestJson(self, requesturl):
         print("requestJson")
         print(requesturl)
         print(self.domurl+"/json.htm?type=command&param="+requesturl)
