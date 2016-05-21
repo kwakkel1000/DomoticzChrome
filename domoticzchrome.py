@@ -41,9 +41,9 @@ class mediaListener:
             self.oldPlayerStatus = status.player_state
             requesturl = "switchlight&idx="+str(self.device)+"&switchcmd="
             if status.player_state == "PLAYING" or status.player_state == "BUFFERING":
-                requesturl += "on"
+                requesturl += "On"
             else :
-                requesturl += "off"
+                requesturl += "Off"
             print(requesturl)
             data = self.requestJson(requesturl)
             self.storeVariable('ChromeState', new_state)
