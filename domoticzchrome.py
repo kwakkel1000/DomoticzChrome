@@ -44,7 +44,7 @@ class mediaListener:
             print("new state")
             print(self.device)
             self.oldPlayerStatus = status.player_state
-            requesturl = "switchlight&idx="+self.device+"&switchcmd="
+            requesturl = "switchlight&idx="+str(self.device)+"&switchcmd="
             print(requesturl)
             if status.player_state == "PLAYING" or status.player_state == "BUFFERING":
                 print("on: "+status.player_state)
