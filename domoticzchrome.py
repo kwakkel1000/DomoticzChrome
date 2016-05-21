@@ -33,6 +33,15 @@ class mediaListener:
         data = urllib.urlopen(self.domurl+"/json.htm?type=command&param="+requesturl)
         return data
 
+    def storeVariable(self,name, value):
+        print("storeVariable")
+        value = urllib.urlencode({'vvalue':value, 'vname':name, 'vtype':2})
+        data = self.requestJson("updateuservariable&"+value)
+        reader = codecs.getreader("utf-8")
+        obj = json.load(reader(data))
+        if (obj['status'] == 'ERR'):
+            data = self.requestJson("updateuservariable&"+value)
+
     def new_media_status(self, status):
         print("mediaListener")
         print(status)
@@ -47,15 +56,6 @@ class mediaListener:
             print(requesturl)
             data = self.requestJson(requesturl)
             self.storeVariable('ChromeState', new_state)
-
-    def storeVariable(self,name, value):
-        print("storeVariable")
-        value = urllib.urlencode({'vvalue':value, 'vname':name, 'vtype':2})
-        data = self.requestJson("updateuservariable&"+value)
-        reader = codecs.getreader("utf-8")
-        obj = json.load(reader(data))
-        if (obj['status'] == 'ERR'):
-            data = self.requestJson("updateuservariable&"+value)
 
 listener = mediaListener(domoticz, 106)
 
