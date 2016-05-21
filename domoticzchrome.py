@@ -52,6 +52,7 @@ class mediaListener:
             else :
                 print("off: "+status.player_state)
                 requesturl += "off"
+            print(requesturl)
             data = self.requestJson(requesturl)
             print(data)
             self.storeVariable('ChromeState', new_state)
