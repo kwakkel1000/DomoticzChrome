@@ -27,26 +27,31 @@ class mediaListener:
         self.device=deviceno
         self.oldPlayerStatus = 'NONE'
 
+    def requestJson(url):
+        data = urllib.urlopen(self.domurl+"/json.htm?type=command&param="+url)
+        return data
+
     def new_media_status(self, status):
         print("mediaListener")
         print(status)
         if (self.oldPlayerStatus != status.player_state):
             self.oldPlayerStatus = status.player_state
+            url = "switchlight&idx="+self.device+"&switchcmd="
             if status.player_state == "PLAYING" or status.player_state == "BUFFERING":
-                
-                data = urllib.urlopen(self.domurl+"/json.htm?type=command&param=switchlight&idx="+self.device+"&switchcmd=on")
+                url += "on"
             else :
-                data = urllib.urlopen(self.domurl+"/json.htm?type=command&param=switchlight&idx="+self.device+"&switchcmd=off")
+                url += "off"
+            data = self.requestJson(url)
             print(data)
             self.storeVariable('ChromeState', new_state)
 
     def storeVariable(self,name, value):
         value = urllib.urlencode({'vvalue':value, 'vname':name, 'vtype':2})
-        d = urllib.urlopen(self.domurl+'/json.htm?type=command&param=updateuservariable&'+value)
+        data = self.requestJson("updateuservariable&"+value)
         reader = codecs.getreader("utf-8")
-        obj = json.load(reader(d))
+        obj = json.load(reader(data))
         if (obj['status'] == 'ERR'):
-            d = urllib.urlopen(self.domurl+'/json.htm?type=command&param=saveuservariable&'+value)
+            data = self.requestJson("updateuservariable&"+value)
 
 listener = mediaListener(domoticz, 106)
 
