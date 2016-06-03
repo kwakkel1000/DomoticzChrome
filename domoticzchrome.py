@@ -21,7 +21,7 @@ cast = pychromecast.get_chromecast()
 
 class mediaListener:
     domurl="http://10.0.10.184:8080"
-    device=106
+    device=120
     def __init__(self, domoticzurl, deviceno):
         self.domurl = domoticzurl
         self.device=deviceno
@@ -55,7 +55,7 @@ class mediaListener:
             data = self.requestJson(requesturl)
             self.storeVariable('ChromeState', status.player_state)
 
-listener = mediaListener(domoticz, 106)
+listener = mediaListener(domoticz, 120)
 
 cast.media_controller.register_status_listener(listener)
 
