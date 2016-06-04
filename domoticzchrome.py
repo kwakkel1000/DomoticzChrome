@@ -11,7 +11,7 @@ import urllib
 import pychromecast
 #import pychromecast.controllers.youtube as youtube
 
-domoticz = "http://10.0.10.184:8080"
+domoticz = "http://10.0.10.197:8080"
 
 
 if '--show-debug' in sys.argv:
@@ -20,7 +20,7 @@ if '--show-debug' in sys.argv:
 cast = pychromecast.get_chromecast()
 
 class mediaListener:
-    domurl="http://10.0.10.184:8080"
+    domurl="http://10.0.10.197:8080"
     device=120
     def __init__(self, domoticzurl, deviceno):
         self.domurl = domoticzurl
